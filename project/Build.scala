@@ -1,15 +1,19 @@
 import sbt._
 import Keys._
 
+import scoverage.ScoverageSbtPlugin._
+import ScoverageKeys._
+
 object BuildSettings {
-  val buildSettings = Defaults.defaultSettings ++ Seq(
+  val buildSettings = Defaults.defaultSettings ++ instrumentSettings ++ Seq(
     organization := "org.scalamacros",
     version := "1.0.0",
     scalaVersion := "2.11.1",
     crossScalaVersions := Seq("2.10.2", "2.10.3", "2.10.4", "2.11.0", "2.11.1"),
     resolvers += Resolver.sonatypeRepo("snapshots"),
     resolvers += Resolver.sonatypeRepo("releases"),
-    scalacOptions ++= Seq()
+    scalacOptions ++= Seq(),
+    libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
   )
 }
 
